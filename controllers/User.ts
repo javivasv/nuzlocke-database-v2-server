@@ -5,3 +5,9 @@ export async function getUsers(req: Request, res: Response) {
     const users = await User.find();
     res.send(users);
 }
+
+export async function createUser(req: Request, res: Response) {
+    const user = new User(req.body);
+    await user.save();
+	res.send(user);
+}
