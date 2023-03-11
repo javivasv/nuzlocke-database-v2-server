@@ -7,7 +7,18 @@ export async function getUsers(req: Request, res: Response) {
 }
 
 export async function createUser(req: Request, res: Response) {
-    const user = new User(req.body);
-    await user.save();
-	res.send(user);
+    const username = req.body.username;
+    const user = await User.findOne({ username });
+
+    if (user) {
+        return res.status(404).send({ msg: "User already exists" });
+    }
+
+    try {
+        const newUser = new User(req.body);
+        await newUser.save();
+        res.status(200).send({ msg: "User created" });
+    } catch (error) {
+        res.status(500).send({ error, msg: "An error occurred during the register" });
+    }
 }
