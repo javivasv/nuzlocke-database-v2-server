@@ -10,7 +10,7 @@ export async function loginUser(req: Request, res: Response) {
     }
 
     try {
-        res.status(200).send({ msg: "User found" });
+        res.status(200).send({ user: { username: user.username }, msg: "User found" });
     } catch (error) {
         res.status(500).send({ error, msg: "An error occurred during the login" });
     }
