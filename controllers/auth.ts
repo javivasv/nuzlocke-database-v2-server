@@ -1,0 +1,27 @@
+import { Request, Response } from "express";
+import User from "../models/User";
+import { sign } from "jsonwebtoken";
+
+export async function login(req: Request, res: Response) {
+    const username = req.body.username;
+    const user = await User.findOne({ username });
+
+    if (!user || (user.password !== req.body.password)) {
+        return res.status(404).send({ msg: "Invalid credentials" });
+    }
+
+    try {
+        const token = sign({ id: user._id, username: user.username }, "pndb_v2", { expiresIn: "1d" });
+        res.status(200).send({ token: token, msg: "User found" });
+    } catch (error) {
+        res.status(500).send({ error, msg: "An error occurred during the login" });
+    }
+}
+
+export async function session(req: Request, res: Response) {
+    try {
+        res.status(200).send({ msg: "Session active" });
+    } catch (error) {
+        res.status(401).send({ msg: "Session expired" });
+    }
+}

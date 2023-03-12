@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-import * as userController from "./controllers/User";
-import * as nuzlockeController from "./controllers/Nuzlocke";
+import { validateToken } from "./middlewares/validateToken";
+import * as authController from "./controllers/auth";
+import * as userController from "./controllers/user";
+import * as nuzlockeController from "./controllers/nuzlocke";
 
-// Login
-router.post("/login", userController.loginUser);
-
-// Session
-router.post("/session", userController.validateSession);
+// Login / Session
+router.post("/login", authController.login);
+router.post("/session", validateToken, authController.session);
 
 // Users
 router.get("/users", userController.getUsers);      // Change to specific user get
