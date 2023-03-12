@@ -1,6 +1,21 @@
 import { Request, Response } from "express";
 import User from "../models/User";
 
+export async function loginUser(req: Request, res: Response) {
+    const username = req.body.username;
+    const user = await User.findOne({ username });
+
+    if (!user || (user.password !== req.body.password)) {
+        return res.status(404).send({ msg: "Invalid credentials" });
+    }
+
+    try {
+        res.status(200).send({ msg: "User found" });
+    } catch (error) {
+        res.status(500).send({ error, msg: "An error occurred during the login" });
+    }
+}
+
 export async function getUsers(req: Request, res: Response) {
     const users = await User.find();
     res.send(users);
