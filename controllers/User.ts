@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User from "../models/User";
-import { sign } from "jsonwebtoken";
+import { sign, verify } from "jsonwebtoken";
 
 export async function loginUser(req: Request, res: Response) {
     const username = req.body.username;
@@ -11,10 +11,19 @@ export async function loginUser(req: Request, res: Response) {
     }
 
     try {
-        const token = sign({ id: user._id, username: user.username }, "pndb_v2");
+        const token = sign({ id: user._id, username: user.username }, "pndb_v2", { expiresIn: "1d" });
         res.status(200).send({ token: token, msg: "User found" });
     } catch (error) {
         res.status(500).send({ error, msg: "An error occurred during the login" });
+    }
+}
+
+export async function validateSession(req: Request, res: Response) {
+    try {
+        verify(req.body.token, "pndb_v2");
+        res.status(200).send({ msg: "Session active" });
+    } catch (error) {
+        res.status(401).send({ msg: "Session expired" });
     }
 }
 

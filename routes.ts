@@ -6,6 +6,9 @@ import * as nuzlockeController from "./controllers/Nuzlocke";
 // Login
 router.post("/login", userController.loginUser);
 
+// Session
+router.post("/session", userController.validateSession);
+
 // Users
 router.get("/users", userController.getUsers);      // Change to specific user get
 router.post("/users", userController.createUser);
