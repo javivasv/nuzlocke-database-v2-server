@@ -4,6 +4,7 @@ import { validateToken } from "./middlewares/validateToken";
 import * as authController from "./controllers/auth";
 import * as userController from "./controllers/user";
 import * as nuzlockeController from "./controllers/nuzlocke";
+import * as videoController from "./controllers/video";
 
 // Login / Session
 router.post("/login", authController.login);
@@ -15,5 +16,8 @@ router.post("/users", userController.createUser);
 
 // Nuzlockes
 router.get("/nuzlockes", nuzlockeController.getNuzlockes);
+
+// Videos
+router.get("/videos", videoController.getVideos);
 
 module.exports = router;
