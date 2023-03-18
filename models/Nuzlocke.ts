@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const schema = new mongoose.Schema({
     name:{ type: String, required: true },
     game:{ type: String, required: true },
+    description: { type: String },
     status: { enum: ["started", "completed", "lost"], type: String, required: true },
     user: { type: String, required: true },
     pokemon: [{
