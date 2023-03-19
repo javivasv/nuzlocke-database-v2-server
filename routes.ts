@@ -17,6 +17,7 @@ router.post("/users", userController.createUser);
 // Nuzlockes
 router.get("/nuzlockes", validateToken, nuzlockeController.getNuzlockes);
 router.post("/nuzlockes", validateToken, nuzlockeController.createNuzlocke);
+router.get("/nuzlocke/:id", validateToken, nuzlockeController.getNuzlocke);
 
 // Videos
 router.get("/videos", videoController.getVideos);
