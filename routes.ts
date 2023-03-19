@@ -15,8 +15,8 @@ router.get("/users", userController.getUsers);      // Change to specific user g
 router.post("/users", userController.createUser);
 
 // Nuzlockes
-router.get("/nuzlockes", nuzlockeController.getNuzlockes);
-router.post("/nuzlockes", nuzlockeController.createNuzlocke);
+router.get("/nuzlockes", validateToken, nuzlockeController.getNuzlockes);
+router.post("/nuzlockes", validateToken, nuzlockeController.createNuzlocke);
 
 // Videos
 router.get("/videos", videoController.getVideos);
