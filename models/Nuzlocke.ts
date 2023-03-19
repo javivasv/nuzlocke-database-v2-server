@@ -12,7 +12,6 @@ const schema = new mongoose.Schema({
       location: { type: String, required: true },
       obtained: { enum: ["caught", "gifted", "hatched", "traded", "not"], type: String, required: true },
       original: { type: Boolean, required: true },
-      number: { type: String },
       sprite: { type: String },
       fainted: { type: Boolean, required: true }
   }],

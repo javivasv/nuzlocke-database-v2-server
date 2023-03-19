@@ -28,7 +28,15 @@ export async function createNuzlocke(req: Request, res: Response) {
     ...req.body,
     user: (decodedToken as JwtPayload)._id,
     status: "started",
-    pokemon: [],
+    pokemon: [{
+      species: "charmander",
+      nickname: "test",
+      location: "pallet town",
+      obtained: "gifted",
+      original: false,
+      sprite: "sprite",
+      fainted: false,
+    }],
   };
 
   try {
