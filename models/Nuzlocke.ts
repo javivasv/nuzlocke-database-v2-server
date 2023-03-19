@@ -7,7 +7,10 @@ const schema = new mongoose.Schema({
   status: { enum: ["started", "completed", "lost"], type: String, required: true },
   user: { type: String, required: true },
   pokemon: [{
-      species: { type: String, required: true },
+      species: {
+        codedSpecies: { type: String, required: true },
+        formattedSpecies: { type: String, required: true },
+      },
       nickname: { type: String },
       location: { type: String, required: true },
       obtained: { enum: ["caught", "gifted", "hatched", "traded", "not"], type: String, required: true },
