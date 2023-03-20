@@ -53,7 +53,7 @@ export async function getNuzlocke(req: Request, res: Response) {
   //const decodedToken = verify(req.header("Authorization"), "pndb_v2")
 
   try {
-    const nuzlocke = await Nuzlocke.findOne({ _id: req.params.id });
+    const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId });
     res.status(200).send({ nuzlocke, msg: "Nuzlocke found" });
   } catch (error) {
     res.status(500).send({ error, msg: "An error occurred during the process" });

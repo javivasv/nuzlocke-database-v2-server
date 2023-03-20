@@ -18,10 +18,11 @@ router.post("/users", userController.createUser);
 // Nuzlockes
 router.get("/nuzlockes", validateToken, nuzlockeController.getNuzlockes);
 router.post("/nuzlockes", validateToken, nuzlockeController.createNuzlocke);
-router.get("/nuzlocke/:id", validateToken, nuzlockeController.getNuzlocke);
+router.get("/nuzlocke/:nuzlockeId", validateToken, nuzlockeController.getNuzlocke);
 
 // Pokemon
-router.post("/nuzlocke/:id/pokemon", validateToken, pokemonController.addPokemon);
+router.post("/nuzlocke/:nuzlockeId/pokemon", validateToken, pokemonController.addPokemon);
+router.put("/nuzlocke/:nuzlockeId/pokemon/:pokemonId", validateToken, pokemonController.updatePokemon);
 
 // Videos
 router.get("/videos", videoController.getVideos);
