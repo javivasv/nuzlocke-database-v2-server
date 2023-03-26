@@ -20,6 +20,7 @@ router.get("/nuzlockes", validateToken, nuzlockeController.getNuzlockes);
 router.post("/nuzlockes", validateToken, nuzlockeController.createNuzlocke);
 router.get("/nuzlocke/:nuzlockeId", validateToken, nuzlockeController.getNuzlocke);
 router.put("/nuzlocke/:nuzlockeId", validateToken, nuzlockeController.updateNuzlocke);
+router.delete("/nuzlocke/:nuzlockeId", validateToken, nuzlockeController.deleteNuzlocke);
 
 // Pokemon
 router.post("/nuzlocke/:nuzlockeId/pokemon", validateToken, pokemonController.addPokemon);

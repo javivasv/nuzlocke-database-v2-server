@@ -70,3 +70,15 @@ export async function updateNuzlocke(req: Request, res: Response) {
     res.status(500).send({ error, msg: "An error occurred during the update" });
   }
 }
+
+export async function deleteNuzlocke(req: Request, res: Response) {
+  //const decodedToken = verify(req.header("Authorization"), "pndb_v2")
+
+  try {
+    const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId });
+    nuzlocke.delete();
+    res.status(200).send({ msg: "Nuzlocke deleted" });
+  } catch (error) {
+    res.status(500).send({ error, msg: "An error occurred during the delete" });
+  }
+}
