@@ -25,6 +25,6 @@ export async function updatePokemon(req: Request, res: Response) {
     await nuzlocke.save();
     res.status(200).send({ nuzlocke, msg: "Pokemon updated" });
   } catch (error) {
-    res.status(500).send({ error, msg: "An error occurred during the updating" });
+    res.status(500).send({ error, msg: "An error occurred during the update" });
   }
 }

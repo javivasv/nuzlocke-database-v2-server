@@ -19,6 +19,6 @@ export async function createUser(req: Request, res: Response) {
     await newUser.save();
     res.status(200).send({ msg: "User created" });
   } catch (error) {
-    res.status(500).send({ error, msg: "An error occurred during the register" });
+    res.status(500).send({ error, msg: "An error occurred during the creation" });
   }
 }

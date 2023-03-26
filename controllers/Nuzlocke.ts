@@ -59,3 +59,14 @@ export async function getNuzlocke(req: Request, res: Response) {
     res.status(500).send({ error, msg: "An error occurred during the process" });
   }
 }
+
+export async function updateNuzlocke(req: Request, res: Response) {
+  //const decodedToken = verify(req.header("Authorization"), "pndb_v2")
+
+  try {
+    const nuzlocke = await Nuzlocke.findByIdAndUpdate(req.params.nuzlockeId, req.body, { new: true });
+    res.status(200).send({ nuzlocke, msg: "Nuzlocke updated" });
+  } catch (error) {
+    res.status(500).send({ error, msg: "An error occurred during the update" });
+  }
+}
