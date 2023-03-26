@@ -25,6 +25,7 @@ router.delete("/nuzlocke/:nuzlockeId", validateToken, nuzlockeController.deleteN
 // Pokemon
 router.post("/nuzlocke/:nuzlockeId/pokemon", validateToken, pokemonController.addPokemon);
 router.put("/nuzlocke/:nuzlockeId/pokemon/:pokemonId", validateToken, pokemonController.updatePokemon);
+router.delete("/nuzlocke/:nuzlockeId/pokemon/:pokemonId", validateToken, pokemonController.deletePokemon);
 
 // Videos
 router.get("/videos", videoController.getVideos);
