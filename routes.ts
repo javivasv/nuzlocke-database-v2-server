@@ -12,7 +12,6 @@ router.post("/login", authController.login);
 router.post("/session", validateToken, authController.session);
 
 // Users
-router.get("/users", userController.getUsers);      // Change to specific user get
 router.post("/users", userController.createUser);
 
 // Nuzlockes

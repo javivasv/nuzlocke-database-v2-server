@@ -50,35 +50,47 @@ export async function createNuzlocke(req: Request, res: Response) {
 }
 
 export async function getNuzlocke(req: Request, res: Response) {
-  //const decodedToken = verify(req.header("Authorization"), "pndb_v2")
+  const decodedToken = verify(req.header("Authorization"), "pndb_v2")
 
   try {
-    const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId });
+    const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
     res.status(200).send({ nuzlocke, msg: "Nuzlocke found" });
   } catch (error) {
-    res.status(500).send({ error, msg: "An error occurred during the process" });
+    if (error.message === "AccessDenied") {
+      res.status(403).send({ error, msg: "Access denied" });
+    } else {
+      res.status(500).send({ error, msg: "An error occurred during the process" });
+    }
   }
 }
 
 export async function updateNuzlocke(req: Request, res: Response) {
-  //const decodedToken = verify(req.header("Authorization"), "pndb_v2")
+  const decodedToken = verify(req.header("Authorization"), "pndb_v2")
 
   try {
-    const nuzlocke = await Nuzlocke.findByIdAndUpdate(req.params.nuzlockeId, req.body, { new: true });
+    const nuzlocke = await Nuzlocke.findByIdAndUpdate({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }, req.body, { new: true }).orFail(new Error("AccessDenied"));
     res.status(200).send({ nuzlocke, msg: "Nuzlocke updated" });
   } catch (error) {
-    res.status(500).send({ error, msg: "An error occurred during the update" });
+    if (error.message === "AccessDenied") {
+      res.status(403).send({ error, msg: "Access denied" });
+    } else {
+      res.status(500).send({ error, msg: "An error occurred during the update" });
+    }
   }
 }
 
 export async function deleteNuzlocke(req: Request, res: Response) {
-  //const decodedToken = verify(req.header("Authorization"), "pndb_v2")
+  const decodedToken = verify(req.header("Authorization"), "pndb_v2")
 
   try {
-    const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId });
+    const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
     nuzlocke.delete();
     res.status(200).send({ msg: "Nuzlocke deleted" });
   } catch (error) {
-    res.status(500).send({ error, msg: "An error occurred during the delete" });
+    if (error.message === "AccessDenied") {
+      res.status(403).send({ error, msg: "Access denied" });
+    } else {
+      res.status(500).send({ error, msg: "An error occurred during the delete" });
+    }
   }
 }

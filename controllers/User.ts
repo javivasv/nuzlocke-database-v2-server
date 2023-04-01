@@ -1,11 +1,6 @@
 import { Request, Response } from "express";
 import User from "../models/User";
 
-export async function getUsers(req: Request, res: Response) {
-  const users = await User.find();
-  res.send(users);
-}
-
 export async function createUser(req: Request, res: Response) {
   const username = req.body.username;
   const user = await User.findOne({ username });
