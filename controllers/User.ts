@@ -12,7 +12,7 @@ export async function createUser(req: Request, res: Response) {
   try {
     const newUser = new User(req.body);
     await newUser.save();
-    res.status(200).send({ msg: "User created" });
+    res.status(200).send({ msg: "User created successfully" });
   } catch (error) {
     res.status(500).send({ error, msg: "An error occurred during the creation" });
   }

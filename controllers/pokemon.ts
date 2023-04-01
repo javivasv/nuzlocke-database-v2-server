@@ -11,7 +11,7 @@ export async function addPokemon(req: Request, res: Response) {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
     nuzlocke.pokemon.push(newPokemon);
     await nuzlocke.save();
-    res.status(200).send({ nuzlocke, msg: "Pokemon added" });
+    res.status(200).send({ nuzlocke, msg: "Pokemon added successfully" });
   } catch (error) {
     if (error.message === "AccessDenied") {
       res.status(403).send({ error, msg: "Access denied" });
@@ -28,7 +28,7 @@ export async function updatePokemon(req: Request, res: Response) {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
     nuzlocke.pokemon.id(req.params.pokemonId).set(req.body);
     await nuzlocke.save();
-    res.status(200).send({ nuzlocke, msg: "Pokemon updated" });
+    res.status(200).send({ nuzlocke, msg: "Pokemon updated successfully" });
   } catch (error) {
     if (error.message === "AccessDenied") {
       res.status(403).send({ error, msg: "Access denied" });
@@ -45,7 +45,7 @@ export async function deletePokemon(req: Request, res: Response) {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
     nuzlocke.pokemon.id(req.params.pokemonId).remove();
     await nuzlocke.save();
-    res.status(200).send({ nuzlocke, msg: "Pokemon delete" });
+    res.status(200).send({ nuzlocke, msg: "Pokemon deleted successfully" });
   } catch (error) {
     if (error.message === "AccessDenied") {
       res.status(403).send({ error, msg: "Access denied" });
