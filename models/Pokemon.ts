@@ -10,7 +10,11 @@ const schema = new mongoose.Schema({
   obtained: { enum: ["caught", "gifted", "hatched", "traded", "not"], type: String, required: true },
   original: { type: Boolean, required: true },
   sprite: { type: String },
-  fainted: { type: Boolean, required: true }
+  fainted: { type: Boolean, required: true },
+  types: {
+    first: { enum: ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"], type: String, required: true },
+    second: { enum: ["", "normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"], type: String },
+  }
 });
 
 export default module.exports = mongoose.model("Pokemon", schema);
