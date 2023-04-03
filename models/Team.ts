@@ -5,10 +5,16 @@ const schema = new mongoose.Schema({
   description: { type: String },
   pokemon: [{
     id: { type: mongoose.SchemaTypes.ObjectId },
-    item: { type: String },
-    moves: [
-      { type: String }
-    ],
+    item: {
+      name: { type: String },
+      sprite: { type: String },
+    },
+    moves: {
+      first: { type: String },
+      second: { type: String },
+      third: { type: String },
+      fourth: { type: String },
+    }
   }]
 });
 
