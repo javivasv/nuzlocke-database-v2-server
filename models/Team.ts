@@ -6,14 +6,27 @@ const schema = new mongoose.Schema({
   pokemon: [{
     id: { type: mongoose.SchemaTypes.ObjectId },
     item: {
-      name: { type: String },
       sprite: { type: String },
+      codedName: { type: String },
+      formattedName: { type: String },
     },
     moves: {
-      first: { type: String },
-      second: { type: String },
-      third: { type: String },
-      fourth: { type: String },
+      first: {
+        codedName: { type: String },
+        formattedName: { type: String },
+      },
+      second: {
+        codedName: { type: String },
+        formattedName: { type: String },
+      },
+      third: {
+        codedName: { type: String },
+        formattedName: { type: String },
+      },
+      fourth: {
+        codedName: { type: String },
+        formattedName: { type: String },
+      },
     }
   }]
 });

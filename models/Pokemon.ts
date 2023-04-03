@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const schema = new mongoose.Schema({
   originalSpecies: { type: Boolean, required: true },
   species: {
-    codedSpecies: { type: String, required: true },
-    formattedSpecies: { type: String, required: true },
+    codedName: { type: String, required: true },
+    formattedName: { type: String, required: true },
   },
   nickname: { type: String },
   location: { type: String, required: true },
@@ -17,8 +17,8 @@ const schema = new mongoose.Schema({
   },
   originalAbility: { type: Boolean, required: true },
   ability: {
-    codedAbility: { type: String },
-    formattedAbility: { type: String },
+    codedName: { type: String },
+    formattedName: { type: String },
   },
 });
 
