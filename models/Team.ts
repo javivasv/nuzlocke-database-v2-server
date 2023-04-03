@@ -14,18 +14,26 @@ const schema = new mongoose.Schema({
       first: {
         codedName: { type: String },
         formattedName: { type: String },
+        class: { type: String },
+        type: { type: String },
       },
       second: {
         codedName: { type: String },
         formattedName: { type: String },
+        class: { type: String },
+        type: { type: String },
       },
       third: {
         codedName: { type: String },
         formattedName: { type: String },
+        class: { type: String },
+        type: { type: String },
       },
       fourth: {
         codedName: { type: String },
         formattedName: { type: String },
+        class: { type: String },
+        type: { type: String },
       },
     }
   }]
