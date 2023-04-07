@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String },
   pokemon: [{
-    pokemon: { type: mongoose.SchemaTypes.ObjectId },
+    pokemonId: { type: mongoose.SchemaTypes.ObjectId },
     item: {
       sprite: { type: String },
       codedName: { type: String },
