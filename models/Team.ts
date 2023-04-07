@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
   name: { type: String, required: true },
+  vs: { type: String },
   description: { type: String },
   pokemon: [{
     pokemonId: { type: String },
