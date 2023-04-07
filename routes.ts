@@ -30,7 +30,7 @@ router.delete("/nuzlocke/:nuzlockeId/pokemon/:pokemonId", validateToken, pokemon
 // Teams
 router.post("/nuzlocke/:nuzlockeId/team", validateToken, teamController.addTeam);
 router.put("/nuzlocke/:nuzlockeId/team/:teamId", validateToken, teamController.updateTeam);
-//router.delete("/nuzlocke/:nuzlockeId/pokemon/:pokemonId", validateToken, pokemonController.deletePokemon);
+router.delete("/nuzlocke/:nuzlockeId/team/:teamId", validateToken, teamController.deleteTeam);
 
 // Videos
 router.get("/videos", videoController.getVideos);
