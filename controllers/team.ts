@@ -21,15 +21,14 @@ export async function addTeam(req: Request, res: Response) {
   }
 }
 
-/*
 export async function updateTeam(req: Request, res: Response) {
   const decodedToken = verify(req.header("Authorization"), "pndb_v2")
 
   try {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
-    nuzlocke.pokemon.id(req.params.pokemonId).set(req.body);
+    nuzlocke.teams.id(req.params.teamId).set(req.body);
     await nuzlocke.save();
-    res.status(200).send({ nuzlocke, msg: "Pokemon updated successfully" });
+    res.status(200).send({ nuzlocke, msg: "Team updated successfully" });
   } catch (error) {
     if (error.message === "AccessDenied") {
       res.status(403).send({ error, msg: "Access denied" });
@@ -39,6 +38,7 @@ export async function updateTeam(req: Request, res: Response) {
   }
 }
 
+/*
 export async function deleteTeam(req: Request, res: Response) {
   const decodedToken = verify(req.header("Authorization"), "pndb_v2")
 

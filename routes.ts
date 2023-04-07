@@ -29,7 +29,7 @@ router.delete("/nuzlocke/:nuzlockeId/pokemon/:pokemonId", validateToken, pokemon
 
 // Teams
 router.post("/nuzlocke/:nuzlockeId/team", validateToken, teamController.addTeam);
-//router.put("/nuzlocke/:nuzlockeId/pokemon/:pokemonId", validateToken, pokemonController.updatePokemon);
+router.put("/nuzlocke/:nuzlockeId/team/:teamId", validateToken, teamController.updateTeam);
 //router.delete("/nuzlocke/:nuzlockeId/pokemon/:pokemonId", validateToken, pokemonController.deletePokemon);
 
 // Videos
