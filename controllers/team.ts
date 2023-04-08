@@ -4,7 +4,7 @@ import Team from "../models/Team";
 import { verify, JwtPayload } from "jsonwebtoken";
 
 export async function addTeam(req: Request, res: Response) {
-  const decodedToken = verify(req.header("Authorization"), "pndb_v2")
+  const decodedToken = verify(req.header("Authorization"), "ndb_v2")
 
   try {
     const newTeam = new Team(req.body);
@@ -22,7 +22,7 @@ export async function addTeam(req: Request, res: Response) {
 }
 
 export async function updateTeam(req: Request, res: Response) {
-  const decodedToken = verify(req.header("Authorization"), "pndb_v2")
+  const decodedToken = verify(req.header("Authorization"), "ndb_v2")
 
   try {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
@@ -39,7 +39,7 @@ export async function updateTeam(req: Request, res: Response) {
 }
 
 export async function deleteTeam(req: Request, res: Response) {
-  const decodedToken = verify(req.header("Authorization"), "pndb_v2")
+  const decodedToken = verify(req.header("Authorization"), "ndb_v2")
 
   try {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));

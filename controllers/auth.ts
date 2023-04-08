@@ -11,7 +11,7 @@ export async function login(req: Request, res: Response) {
   }
 
   try {
-    const token = sign({ _id: user._id, username: user.username }, "pndb_v2", { expiresIn: "1d" });
+    const token = sign({ _id: user._id, username: user.username }, "ndb_v2", { expiresIn: "1d" });
     res.status(200).send({ token, msg: "User found" });
   } catch (error) {
     res.status(500).send({ error, msg: "An error occurred during the login" });

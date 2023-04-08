@@ -5,7 +5,7 @@ export function validateToken(req: Request, res: Response, next: NextFunction) {
   const token = req.header("Authorization");
 
   try {
-    verify(token, "pndb_v2");
+    verify(token, "ndb_v2");
     next();
   } catch (error) {
     if (error.name === "TokenExpiredError") {

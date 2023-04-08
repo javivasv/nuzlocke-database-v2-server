@@ -4,7 +4,7 @@ const routes = require("./routes");
 const cors = require("cors")
 
 mongoose
-  .connect("mongodb://localhost:27017/pndb", { useNewUrlParser: true })
+  .connect("mongodb://localhost:27017/ndb", { useNewUrlParser: true })
   .then(() => {
     const app = express();
     app.use(cors({
