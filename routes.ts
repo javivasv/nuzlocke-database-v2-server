@@ -7,6 +7,7 @@ import * as nuzlockeController from "./controllers/nuzlocke";
 import * as pokemonController from "./controllers/pokemon";
 import * as teamController from "./controllers/team";
 import * as videoController from "./controllers/video";
+import * as suggestionController from "./controllers/suggestion";
 
 // Login / Session
 router.post("/login", authController.login);
@@ -34,5 +35,8 @@ router.delete("/nuzlocke/:nuzlockeId/team/:teamId", validateToken, teamControlle
 
 // Videos
 router.get("/videos", videoController.getVideos);
+
+// Suggestions
+router.post("/suggestions", suggestionController.sendSuggestion);
 
 module.exports = router;

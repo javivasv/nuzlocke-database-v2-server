@@ -2,6 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const cors = require("cors")
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 mongoose
   .connect("mongodb://localhost:27017/ndb", { useNewUrlParser: true })
