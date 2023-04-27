@@ -4,7 +4,7 @@ const routes = require("./routes");
 const cors = require("cors")
 const dotenv = require("dotenv");
 
-dotenv.config();
+dotenv.config({ path: ".env.local" });
 
 mongoose
   .connect("mongodb://localhost:27017/ndb", { useNewUrlParser: true })
