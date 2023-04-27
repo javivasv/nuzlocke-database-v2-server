@@ -3,7 +3,7 @@ import Nuzlocke from "../models/Nuzlocke";
 import { verify, JwtPayload } from "jsonwebtoken";
 
 export async function getNuzlockes(req: Request, res: Response) {
-  const decodedToken = verify(req.header("Authorization"), "ndb_v2")
+  const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)
 
   try {
     const nuzlockes = (await Nuzlocke.find({ user: (decodedToken as JwtPayload)._id })).map(nuzlocke => {
@@ -22,7 +22,7 @@ export async function getNuzlockes(req: Request, res: Response) {
 }
 
 export async function createNuzlocke(req: Request, res: Response) {
-  const decodedToken = verify(req.header("Authorization"), "ndb_v2")
+  const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)
 
   const data = {
     ...req.body,
@@ -50,7 +50,7 @@ export async function createNuzlocke(req: Request, res: Response) {
 }
 
 export async function getNuzlocke(req: Request, res: Response) {
-  const decodedToken = verify(req.header("Authorization"), "ndb_v2")
+  const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)
 
   try {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
@@ -65,7 +65,7 @@ export async function getNuzlocke(req: Request, res: Response) {
 }
 
 export async function updateNuzlocke(req: Request, res: Response) {
-  const decodedToken = verify(req.header("Authorization"), "ndb_v2")
+  const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)
 
   try {
     const nuzlocke = await Nuzlocke.findByIdAndUpdate({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }, req.body, { new: true }).orFail(new Error("AccessDenied"));
@@ -80,7 +80,7 @@ export async function updateNuzlocke(req: Request, res: Response) {
 }
 
 export async function deleteNuzlocke(req: Request, res: Response) {
-  const decodedToken = verify(req.header("Authorization"), "ndb_v2")
+  const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)
 
   try {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
