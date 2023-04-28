@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import bcrypt from "bcryptjs";
 import User from "../models/User";
 
 export async function createUser(req: Request, res: Response) {
@@ -9,8 +10,16 @@ export async function createUser(req: Request, res: Response) {
     return res.status(404).send({ msg: "User already exists" });
   }
 
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+
+  const userInfo = {
+    username: req.body.username,
+    password: hashedPassword,
+  }
+
   try {
-    const newUser = new User(req.body);
+    const newUser = new User(userInfo);
     await newUser.save();
     res.status(200).send({ msg: "User created successfully" });
   } catch (error) {

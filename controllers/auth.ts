@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
-import User from "../models/User";
 import { sign } from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import User from "../models/User";
 
 export async function login(req: Request, res: Response) {
   const username = req.body.username;
   const user = await User.findOne({ username });
 
-  if (!user || (user.password !== req.body.password)) {
+  if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
     return res.status(404).send({ msg: "Invalid credentials" });
   }
 
@@ -18,6 +19,6 @@ export async function login(req: Request, res: Response) {
   }
 }
 
-export async function session(req: Request, res: Response) {
+export async function session(res: Response) {
   res.status(200).send({ msg: "Session active" });
 }

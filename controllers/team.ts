@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
+import { verify, JwtPayload } from "jsonwebtoken";
 import Nuzlocke from "../models/Nuzlocke";
 import Team from "../models/Team";
-import { verify, JwtPayload } from "jsonwebtoken";
 
 export async function addTeam(req: Request, res: Response) {
   const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)

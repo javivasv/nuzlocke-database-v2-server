@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
+import { verify, JwtPayload } from "jsonwebtoken";
 import Nuzlocke from "../models/Nuzlocke";
 import Pokemon from "../models/Pokemon";
-import { verify, JwtPayload } from "jsonwebtoken";
 
 export async function addPokemon(req: Request, res: Response) {
   const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)

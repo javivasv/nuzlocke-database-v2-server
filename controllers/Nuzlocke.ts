@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import Nuzlocke from "../models/Nuzlocke";
 import { verify, JwtPayload } from "jsonwebtoken";
+import Nuzlocke from "../models/Nuzlocke";
 
 export async function getNuzlockes(req: Request, res: Response) {
   const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)
