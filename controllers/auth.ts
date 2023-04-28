@@ -19,6 +19,6 @@ export async function login(req: Request, res: Response) {
   }
 }
 
-export async function session(res: Response) {
+export async function session(req: Request, res: Response) {
   res.status(200).send({ msg: "Session active" });
 }
