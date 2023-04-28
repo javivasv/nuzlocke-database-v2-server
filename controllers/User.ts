@@ -10,7 +10,7 @@ export async function createUser(req: Request, res: Response) {
     return res.status(404).send({ msg: "User already exists" });
   }
 
-  const salt = bcrypt.genSaltSync(10);
+  const salt = bcrypt.genSaltSync(+process.env.SALT);
   const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
   const userInfo = {
