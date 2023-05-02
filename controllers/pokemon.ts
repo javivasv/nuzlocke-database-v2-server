@@ -7,7 +7,16 @@ export async function addPokemon(req: Request, res: Response) {
   const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)
 
   try {
-    const newPokemon = new Pokemon(req.body);
+    const newPokemon = new Pokemon({
+      ...req.body,
+      obtainedAs: {
+        sprite: req.body.sprite,
+        species: req.body.species,
+        ability: req.body.ability,
+        types: req.body.types,
+      }
+    })
+
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
     nuzlocke.pokemon.push(newPokemon);
     await nuzlocke.save();

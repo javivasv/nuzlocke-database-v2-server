@@ -20,6 +20,21 @@ const schema = new mongoose.Schema({
     codedName: { type: String },
     formattedName: { type: String },
   },
+  obtainedAs: {
+    sprite: { type: String },
+    species: {
+      codedName: { type: String, required: true },
+      formattedName: { type: String, required: true },
+    },
+    ability: {
+      codedName: { type: String },
+      formattedName: { type: String },
+    },
+    types: {
+      first: { enum: ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"], type: String, required: true },
+      second: { enum: ["", "normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"], type: String },
+    },
+  }
 });
 
 export default module.exports = mongoose.model("Pokemon", schema);
