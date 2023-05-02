@@ -5,7 +5,14 @@ const schema = new mongoose.Schema({
   vs: { type: String },
   description: { type: String },
   pokemon: [{
-    pokemonId: { type: String },
+    pokemon: {
+      id: { type: String },
+      sprite: { type: String },
+      species: {
+        codedName: { type: String },
+        formattedName: { type: String },
+      }
+    },
     item: {
       sprite: { type: String },
       name: {
