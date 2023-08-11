@@ -54,12 +54,7 @@ export async function deletePokemon(req: Request, res: Response) {
     const nuzlocke = await Nuzlocke.findOne({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }).orFail(new Error("AccessDenied"));
     
     nuzlocke.teams.forEach(team => {
-      let toDeleteMember = team.members.find(member => member.pokemon.id === req.params.pokemonId);
-
-      if (toDeleteMember) {
-        toDeleteMember.pokemon.id = "";
-      }
-
+      team.members = team.members.filter(member => member.pokemon.id !== req.params.pokemonId);
     });
 
     nuzlocke.pokemon.id(req.params.pokemonId).remove();
