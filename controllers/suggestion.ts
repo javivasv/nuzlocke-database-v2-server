@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { createTransport } from "nodemailer";
 
 export async function sendSuggestion(req: Request, res: Response) {
+  console.log('REQ: ', req);
   try {
     let transporter = createTransport({
       auth: {
@@ -13,7 +14,7 @@ export async function sendSuggestion(req: Request, res: Response) {
 
     const mailOptions = {
       from: process.env.EMAIL,
-      subject: `${req.body.name} - Suggestion`,
+      subject: `${req.body.name} - ${req.body.username} - Suggestion`,
       text: req.body.text,
       to: [process.env.EMAIL]
     };
