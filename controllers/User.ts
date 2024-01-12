@@ -3,8 +3,8 @@ import bcrypt from "bcryptjs";
 import User from "../models/User";
 
 export async function createUser(req: Request, res: Response) {
-  const username = req.body.username;
-  const user = await User.findOne({ username });
+  const email = req.body.email;
+  const user = await User.findOne({ email });
 
   if (user) {
     return res.status(404).send({ msg: "User already exists" });
@@ -14,6 +14,7 @@ export async function createUser(req: Request, res: Response) {
   const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
   const userInfo = {
+    email: req.body.email,
     username: req.body.username,
     password: hashedPassword,
   }
