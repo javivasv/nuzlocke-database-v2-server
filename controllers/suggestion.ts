@@ -15,7 +15,12 @@ export async function sendSuggestion(req: Request, res: Response) {
     const mailOptions = {
       from: process.env.EMAIL,
       subject: `${req.body.name} - ${req.body.username} - Suggestion`,
-      text: req.body.text,
+      text: `
+        Name: ${req.body.name} \n
+        Email: ${req.body.email} \n
+        Username: ${req.body.username} \n
+        Text: ${req.body.text}
+      `,
       to: [process.env.EMAIL]
     };
 

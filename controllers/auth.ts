@@ -12,7 +12,7 @@ export async function login(req: Request, res: Response) {
   }
 
   try {
-    const token = sign({ _id: user._id, email: user.email }, process.env.TOKEN_KEY, { expiresIn: "1d" });
+    const token = sign({ _id: user._id, email: user.email, username: user.username }, process.env.TOKEN_KEY, { expiresIn: "1d" });
     res.status(200).send({ token, msg: "User found" });
   } catch (error) {
     res.status(500).send({ error, msg: "An error occurred during the login" });
