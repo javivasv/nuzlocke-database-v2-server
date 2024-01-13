@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { sign, verify } from "jsonwebtoken";
 import { createTransport } from "nodemailer";
 import bcrypt from "bcryptjs";
+import { getResetPasswordTemplate } from "../templates/email/resetPassword";
 import User from "../models/User";
 
 export async function login(req: Request, res: Response) {
@@ -44,9 +45,9 @@ export async function forgotPassword(req: Request, res: Response) {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL,
+      from: `Nuzocke DataBase <${process.env.EMAIL}>`,
+      html: await getResetPasswordTemplate(resetToken),
       subject: `Reset password`,
-      text: `http://localhost:8080/reset-password/${resetToken}`,
       to: [user.email]
     };
 

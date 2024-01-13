@@ -12,7 +12,7 @@ export async function sendSuggestion(req: Request, res: Response) {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL,
+      from: `Nuzocke DataBase <${process.env.EMAIL}>`,
       subject: `${req.body.name} - ${req.body.username} - Suggestion`,
       text: `
         Name: ${req.body.name} \n
