@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: ".env.local" });
 
 mongoose
-  .connect("mongodb://localhost:27017/ndb", { useNewUrlParser: true })
+  .connect(`mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@cluster0.kefbkck.mongodb.net/nuzlocke-database?retryWrites=true&w=majority`, { useNewUrlParser: true })
   .then(() => {
     const app = express();
     app.use(cors({
