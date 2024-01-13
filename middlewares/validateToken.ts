@@ -12,8 +12,8 @@ export function validateToken(req: Request, res: Response, next: NextFunction) {
       res.status(401).send({ error, msg: "Session expired" });
     } else if (error.name === "JsonWebTokenError") {
       res.status(404).send({ error, msg: "Invalid token" });
+    } else {
+      res.status(500).send({ error, msg: "Server error" });
     }
-
-    res.status(500).send({ error, msg: "Server error" });
   }
 }

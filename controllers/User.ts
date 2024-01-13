@@ -27,3 +27,23 @@ export async function createUser(req: Request, res: Response) {
     res.status(500).send({ error, msg: "An error occurred during the creation" });
   }
 }
+
+export async function resetPassword(req: Request, res: Response) {
+  const email = req.body.email;
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(404).send({ msg: 'User not found' });
+  }
+
+  const salt = bcrypt.genSaltSync(+process.env.SALT);
+  const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+
+  try {
+    user.password = hashedPassword;
+    await user.save();
+    res.status(200).send({ msg: "Password updated successfully" });
+  } catch (error) {
+    res.status(500).send({ error, msg: "An error occurred resetting the password" });
+  }
+}

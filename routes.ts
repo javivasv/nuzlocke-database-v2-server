@@ -9,12 +9,15 @@ import * as teamController from "./controllers/team";
 import * as videoController from "./controllers/video";
 import * as suggestionController from "./controllers/suggestion";
 
-// Login / Session
+// Auth
 router.post("/login", authController.login);
 router.post("/session", validateToken, authController.session);
+router.post("/forgot-password", authController.forgotPassword);
+router.post("/validate-reset-token", authController.validateResetToken);
 
 // Users
 router.post("/users", userController.createUser);
+router.put("/users/reset-password", userController.resetPassword);
 
 // Nuzlockes
 router.get("/nuzlockes", validateToken, nuzlockeController.getNuzlockes);

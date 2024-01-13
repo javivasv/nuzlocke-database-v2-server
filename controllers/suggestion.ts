@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { createTransport } from "nodemailer";
 
 export async function sendSuggestion(req: Request, res: Response) {
-  console.log('REQ: ', req);
   try {
     let transporter = createTransport({
       auth: {
