@@ -33,7 +33,7 @@ export async function forgotPassword(req: Request, res: Response) {
   }
 
   try {
-    const resetToken = sign({ _id: user._id, email: user.email }, process.env.TOKEN_KEY, { expiresIn: '1h' });
+    const resetToken = sign({ _id: user._id, email: user.email }, process.env.TOKEN_KEY, { expiresIn: '10m' });
 
     let transporter = createTransport({
       auth: {
