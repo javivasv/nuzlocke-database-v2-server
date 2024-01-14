@@ -242,7 +242,7 @@ export async function getResetPasswordTemplate(resetToken: string) {
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
                                   <tr>
                                     <td align="center">
-                                      <a href="http://localhost:8080/reset-password/${resetToken}" class="f-fallback button" target="_blank">Reset your password</a>
+                                      <a href="http://nuzlockedatabase/reset-password/${resetToken}" class="f-fallback button" target="_blank">Reset your password</a>
                                     </td>
                                   </tr>
                                 </table>
