@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node build/index.js",
+    "postinstall": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -27,5 +29,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.2",
     "nodemailer": "^6.9.1"
+  },
+  "engines": {
+    "node": "20"
   }
 }
