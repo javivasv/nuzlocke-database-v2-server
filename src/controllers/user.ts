@@ -17,6 +17,8 @@ export async function createUser(req: Request, res: Response) {
     email: req.body.email,
     username: req.body.username,
     password: hashedPassword,
+    creationDate: new Date(),
+    updateDate: new Date(),
   }
 
   try {

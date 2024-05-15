@@ -29,6 +29,8 @@ export async function createNuzlocke(req: Request, res: Response) {
     user: (decodedToken as JwtPayload)._id,
     status: "started",
     pokemon: [],
+    creationDate: new Date(),
+    updateDate: new Date(),
   };
 
   try {
@@ -68,7 +70,12 @@ export async function updateNuzlocke(req: Request, res: Response) {
   const decodedToken = verify(req.header("Authorization"), process.env.TOKEN_KEY)
 
   try {
-    const nuzlocke = await Nuzlocke.findByIdAndUpdate({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }, req.body, { new: true }).orFail(new Error("AccessDenied"));
+    const updateNuzlockeData = {
+      ...req.body,
+      updateDate: new Date(),
+    }
+
+    const nuzlocke = await Nuzlocke.findByIdAndUpdate({ _id: req.params.nuzlockeId, user: (decodedToken as JwtPayload)._id }, updateNuzlockeData, { new: true }).orFail(new Error("AccessDenied"));
     res.status(200).send({ nuzlocke, msg: "Nuzlocke updated successfully" });
   } catch (error) {
     if (error.message === "AccessDenied") {

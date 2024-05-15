@@ -10,6 +10,8 @@ const schema = new mongoose.Schema({
   user: { type: mongoose.SchemaTypes.ObjectId, required: true },
   pokemon: [Pokemon.schema],
   teams: [Team.schema],
+  creationDate: { type: Date, required: true },
+  updateDate: { type: Date, required: true }
 });
 
 export default module.exports = mongoose.model("Nuzlocke", schema);
